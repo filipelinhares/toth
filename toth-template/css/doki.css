@@ -1,0 +1,47 @@
+/* # ========== Generic */
+.toth-body {
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+}
+
+/* # ========== Header */
+.toth-navbar {
+  background: #f1f1f1;
+  float: left;
+  width: 20%;
+  position: fixed;
+}
+
+.toth-navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 30px;
+  position: relative;
+  height: 100vh;
+  overflow: auto;
+}
+
+.toth-navbar-brand {
+  display: block;
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+  color: #444;
+  background: #f1f1f1;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.toth-navigation-link {
+  padding: 5px 15px;
+  display: block;
+  color: #222;
+}
+
+.toth-guide-body {
+  margin-left: 25%;
+  float: left;
+  width: 70%;
+}

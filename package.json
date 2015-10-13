@@ -1,0 +1,25 @@
+{
+  "name": "toth",
+  "version": "0.1.0",
+  "description": "Styleguide generator that just works.",
+  "license": "MIT",
+  "repository": "filipelinhares/toth",
+  "author": "Filipe <filipelinhares.com>",
+  "bin": {
+    "toth": "cli.js"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "keywords": [
+    "cli",
+    "generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "doki": "^0.1.1",
+    "meow": "^3.4.2",
+    "ncp": "^2.0.0",
+    "node-static": "^0.7.7"
+  }
+}

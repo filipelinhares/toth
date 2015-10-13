@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>doki</title>
+    <script src="js/handlebars.js"></script>
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/tomorrow.min.css">
+    <script src="js/highlight.js"></script>
+    <script src="js/load.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/sanilize.min.css">
+    <link rel="stylesheet" href="css/typ.min.css">
+    <link rel="stylesheet" href="css/doki.css">
+    <script src="js/doki.js"></script>
+  </head>
+  <body class="toth-body">
+    <aside class="toth-navbar">
+      <nav class="toth-navbar-menu">
+      </nav>
+      <a class="toth-navbar-brand" href="https://github.com/filipelinhares/toth"><small>built with toth</small></a>
+    </aside>
+    <section class="toth-guide-body">
+    </section>
+
+    <script type="text/x-handlebars-template" id="menu">
+      <ul class="toth-navigation">
+      {{#each this}}
+      <li class="toth-nagigation-item">
+      <a class="toth-navigation-link" href="#{{id}}" title="{{name}}">{{name}}</a>
+      </li>
+      {{/each}}
+      </ul>
+    </script>
+    <script type="text/x-handlebars-template" id="app">
+      <div>
+        {{#each this}}
+        <h2 id="{{id}}">{{name}}</h2>
+          <p>{{description}}</p>
+          <dl>
+            {{#each state}}
+            <dt>{{name}}</dt>
+            <dd>{{description}}</dd>
+            {{/each}}
+          </dl>
+          <h3>Example</h3>
+          {{{markup.example}}}
+          <h3>Markup</h3>
+          <pre>
+          <code class="html">
+{{markup.example}}
+          </code>
+          </pre>
+        {{/each}}
+      </div>
+    </script>
+  </body>
+</html>
