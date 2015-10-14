@@ -6,11 +6,12 @@ const Doki   = require('doki');
 const server = require('node-static');
 const ncp    = require('ncp').ncp
 const util   = require('./util/util');
+const path   = require('path');
 
 const cli    = meow(util.help);
 
 let destFolder     = cli.flags.dir || 'toth';
-let templateFolder = './toth-template';
+let templateFolder = path.resolve(__dirname, 'toth-template');
 let userCommand    = cli.input.shift();
 let args           = cli.input;
 
