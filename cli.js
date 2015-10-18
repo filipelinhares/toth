@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 'use strict';
 
-const meow   = require('meow');
-const Doki   = require('doki');
-const server = require('node-static');
-const ncp    = require('ncp').ncp
-const util   = require('./util/util');
-const path   = require('path');
+const meow    = require('meow');
+const Doki    = require('doki');
+const server  = require('node-static');
+const ncp     = require('ncp').ncp
+const path    = require('path');
+const util    = require('./lib/util');
+const message = require('./lib/message');
 
-const cli    = meow(util.help);
+const cli = meow(util.help);
 
 let destFolder     = cli.flags.dir || 'toth';
 let templateFolder = path.resolve(__dirname, 'toth-template');
@@ -16,7 +17,7 @@ let userCommand    = cli.input.shift();
 let args           = cli.input;
 
 const tothNew = () => {
-  if (!args.length) return util.warnMessage('You need to specify a file!')
+  if (!args.length) return message.warn('You need to specify a file!')
   util.dirExist(args[0]);
 
   let doki = new Doki(args);
@@ -27,7 +28,7 @@ const tothNew = () => {
 
   ncp(templateFolder, destFolder, (err) => {
     if (err) return console.error(err);
-    util.infoMessage(`Generated at ${destFolder}!`);
+    message.info(`Generated at ${destFolder}!`);
   });
 };
 
@@ -40,7 +41,7 @@ const tothServe = () => {
           file.serve(request, response);
       }).resume();
   }).listen(port);
-  util.infoMessage(`Server now running at port ${port}`);
+  message.info(`Server now running at port ${port}`);
 };
 
 switch(userCommand) {
