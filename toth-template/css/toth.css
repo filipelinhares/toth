@@ -45,3 +45,56 @@
   float: left;
   width: 70%;
 }
+
+/* # ========== Color palette */
+
+.toth-color-grid {
+  font-size: 0;
+  margin: 0 -5px;
+}
+
+.toth-color-item {
+  display: inline-block;
+  padding: 0 5px;
+  width: 20%;;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+.toth-color-palette {
+  border: 2px solid #f1f1f1;
+  padding: 10px;
+  font-size: 1rem;
+  position: relative;
+  height: 100px;;
+}
+
+.toth-color-text {
+  background: #f1f1f1;
+  color: #222;
+  padding: 5px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@media screen and (max-width: 980px) {
+  .toth-color-item {
+    width: 33.333333%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .toth-color-item {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .toth-color-item {
+    width: 100%;
+  }
+}
+

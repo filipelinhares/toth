@@ -32,7 +32,7 @@ $(function () {
     Doki.content.forEach(function (cont) {
       if (cont.cssurl) loadCSS(cont.cssurl);
       if (cont.jsurl)  loadJS(cont.jsurl);
-    })
+    });
   });
 });
 

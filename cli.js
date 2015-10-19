@@ -24,6 +24,13 @@ const tothNew = () => {
   doki.parser('id', (i, line, block) => line );
   doki.parser('cssurl', (i, line, block) => line );
   doki.parser('jsurl', (i, line, block) => line );
+  doki.parser('colors', (i, line, block) => {
+     var state = line.split( ' - ' );
+     return {
+       name:     (state[0]) ? state[0].trim() : '',
+       variable: (state[1]) ? state[1].trim() : ''
+     };
+  });
   doki.parse(templateFolder + '/index.json');
 
   ncp(templateFolder, destFolder, (err) => {

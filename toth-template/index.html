@@ -28,7 +28,7 @@
       <ul class="toth-navigation">
       {{#each this}}
       <li class="toth-nagigation-item">
-      <a class="toth-navigation-link" href="#{{id}}" title="{{name}}">{{name}}</a>
+        <a class="toth-navigation-link" href="#{{id}}" title="{{name}}">{{name}}</a>
       </li>
       {{/each}}
       </ul>
@@ -36,22 +36,34 @@
     <script type="text/x-handlebars-template" id="app">
       <div>
         {{#each this}}
-        <h2 id="{{id}}">{{name}}</h2>
+          <h2 id="{{id}}">{{name}}</h2>
           <p>{{description}}</p>
-          <dl>
-            {{#each state}}
-            <dt>{{name}}</dt>
-            <dd>{{description}}</dd>
-            {{/each}}
-          </dl>
-          <h3>Example</h3>
-          {{{markup.example}}}
-          <h3>Markup</h3>
-          <pre>
-          <code class="html">
+          {{#if this.colors}}
+            <div class="toth-color-grid">
+              {{#each this.colors}}
+                <div class="toth-color-item">
+                  <div class="toth-color-palette" style="background-color: {{name}}">
+                  <span class="toth-color-text"><strong>{{name}}</strong> - {{variable}}</span>
+                  </div>
+                </div>
+              {{/each}}
+            </div>
+          {{else}}
+            <dl>
+              {{#each state}}
+              <dt>{{name}}</dt>
+              <dd>{{description}}</dd>
+              {{/each}}
+            </dl>
+            <h3>Example</h3>
+            {{{markup.example}}}
+            <h3>Markup</h3>
+            <pre>
+            <code class="html">
 {{markup.example}}
-          </code>
-          </pre>
+            </code>
+            </pre>
+          {{/if}}
         {{/each}}
       </div>
     </script>

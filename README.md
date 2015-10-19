@@ -72,7 +72,7 @@ Your contributions and suggestions are :heart: welcome.
 - [ ] Improves default theme code
 - [ ] Create a way to do custom themes
 - [ ] Improves documentation
-- [ ] Add color palette support
+- [x] Add color palette support
 
 ## License
 [MIT](LICENSE.md) © Filipe LInhares
