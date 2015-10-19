@@ -2,20 +2,20 @@
 var Doki = Doki || {};
 
 fetch('./index.json')
-  .then((data) => {
+  .then(data => {
     return data.json();
   })
-  .then((jsonParsed) => {
+  .then(jsonParsed => {
     Doki.content = jsonParsed;
     $('#app').trigger('ready');
   })
-  .catch((err) => {
+  .catch(err => {
     console.error(err);
   });
 
 $(function () {
-  var body   = $("#app").html();
-  var menu   = $('#menu').html();
+  var body = $('#app').html();
+  var menu = $('#menu').html();
   var bodyTemplate = Handlebars.compile(body);
   var menuTemplate = Handlebars.compile(menu);
 
@@ -25,13 +25,17 @@ $(function () {
     var menu = menuTemplate(Doki.content);
     $('.toth-navbar-menu').append(menu);
 
-    $('pre code').each(function(i, block) {
+    $('pre code').each(function (i, block) {
       hljs.highlightBlock(block);
     });
 
     Doki.content.forEach(function (cont) {
-      if (cont.cssurl) loadCSS(cont.cssurl);
-      if (cont.jsurl)  loadJS(cont.jsurl);
+      if (cont.cssurl) {
+        loadCSS(cont.cssurl);
+      }
+      if (cont.jsurl) {
+        loadJS(cont.jsurl);
+      }
     });
   });
 });
