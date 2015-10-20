@@ -15,14 +15,27 @@
     <link rel="stylesheet" href="css/toth.css">
     <script src="js/toth.js"></script>
   </head>
-  <body class="toth-body">
-    <aside class="toth-navbar">
-      <nav class="toth-navbar-menu">
-      </nav>
-      <a class="toth-navbar-brand" href="https://github.com/filipelinhares/toth"><small>built with toth</small></a>
-    </aside>
-    <section class="toth-guide-body">
-    </section>
+  <body>
+    <div class="toth-loader is-open">
+      <span class="toth-loader-text">
+        loading
+        <div class="toth-loader-spinner">
+          <span class="top-left"></span>
+          <span class="top-right"></span>
+          <span class="bot-left"></span>
+          <span class="bot-right"></span>
+        </div>
+      </span>
+    </div>
+    <div class="toth-body">
+      <aside class="toth-navbar">
+        <nav class="toth-navbar-menu">
+        </nav>
+        <a class="toth-navbar-brand" href="https://github.com/filipelinhares/toth"><small>built with toth</small></a>
+      </aside>
+      <section class="toth-guide-body">
+      </section>
+    </div>
 
     <script type="text/x-handlebars-template" id="menu">
       <ul class="toth-navigation">

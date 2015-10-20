@@ -37,6 +37,7 @@ $(function () {
         loadJS(cont.jsurl);
       }
     });
+    $('.toth-loader').removeClass('is-open');
   });
 });
 
