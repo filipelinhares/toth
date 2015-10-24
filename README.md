@@ -66,11 +66,11 @@ The markup is used to build the code example and the element into your styleguid
 ## Contribute
 Your contributions and suggestions are :heart: welcome.
 
-#### Todo
-- [ ] Use React instead of Handlebars
-- [ ] Create the watch command
-- [ ] Improves default theme code
-- [ ] Create a way to do custom themes
+#### Roadmap to 1.0
+- [ ] Compile template in the back like Jekyll do
+- [ ] Create the `toth watch` command
+- [ ] Improves default theme's code
+- [ ] Create a way to make custom themes
 - [ ] Improves documentation
 - [x] Add color palette support
 
