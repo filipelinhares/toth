@@ -10,13 +10,13 @@
   float: left;
   width: 20%;
   position: fixed;
+  box-shadow: 1px 0 5px rgba(51,51,51,0.2);
 }
 
 .toth-navigation {
   list-style: none;
   margin: 0;
-  padding: 0;
-  padding-bottom: 30px;
+  padding: 10px 0 30px;
   position: relative;
   height: 100vh;
   overflow: auto;
@@ -35,9 +35,15 @@
 }
 
 .toth-navigation-link {
-  padding: 5px 15px;
+  padding: 5px 20px;
   display: block;
   color: #222;
+  border-left: 5px solid transparent;
+  transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toth-navigation-link:hover {
+  border-color: #222;
 }
 
 .toth-guide-body {
@@ -46,17 +52,44 @@
   width: 70%;
 }
 
+/* # ========== Sections */
+
+.toth-section {
+  margin-bottom: 2rem;
+}
+
+.toth-section dt {
+  font-family: 'Menlo', 'Monaco', 'Ubuntu Mono', monospace;
+  font-size: 1rem;
+}
+
+.toth-section h3 {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  margin-top: 3rem;
+}
+
+.toth-section h3:before {
+  content: '';
+  width: 20px;
+  display: block;
+  height: 5px;
+  background: #f1f1f1;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 10px;
+}
+
 /* # ========== Color palette */
 
 .toth-color-grid {
-  font-size: 0;
-  margin: 0 -5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .toth-color-item {
-  display: inline-block;
   padding: 0 5px;
-  width: 20%;;
+  flex: 1 0 20%;;
   vertical-align: top;
   margin-bottom: 10px;
 }
@@ -82,19 +115,48 @@
 
 @media screen and (max-width: 980px) {
   .toth-color-item {
-    width: 33.333333%;
+    flex-basis: 33.333333%;
   }
 }
 
 @media screen and (max-width: 600px) {
+  .toth-navbar,
+  .toth-guide-body {
+    float: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  .toth-guide-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .toth-navbar {
+    position: static;
+  }
+
+  .toth-navigation {
+    height: auto;
+    padding-bottom: 0;
+  }
+
+  .toth-navigation-link {
+    padding: 20px 20px;
+  }
+
   .toth-color-item {
-    width: 50%;
+    flex-basis: 50%;
+  }
+
+  .toth-navbar-brand {
+    display: none;
   }
 }
 
 @media screen and (max-width: 400px) {
   .toth-color-item {
-    width: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -213,4 +275,37 @@
   100% {
     opacity: 1;
   }
+}
+
+.hljs {
+  padding: 0;
+  background: #f1f1f1;
+  margin-top: -24px;
+  padding-left: 24px;
+}
+
+.toth-code {
+  position: relative;
+}
+
+.toth-code:hover .toth-btn-clipboard {
+  opacity: 1;
+  visibility: visible;
+}
+
+.toth-btn-clipboard {
+  position: absolute;
+  right: 0;
+  border: 0;
+  padding: 2px 5px;
+  cursor: pointer;
+  top: 24px;
+  right: 10px;
+  border-radius: 4px;
+  background: #222;
+  color: #f1f1f1;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s;
+  font-weight: bold;
 }

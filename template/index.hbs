@@ -3,17 +3,20 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
     <title>toth - Style Guide</title>
-    <script src="js/vendor/handlebars.min.js"></script>
-    <script src="js/vendor/jquery.min.js"></script>
     <link rel="stylesheet" href="css/vendor/tomorrow.min.css">
     <script src="js/vendor/highlight.min.js"></script>
-    <script src="js/vendor/load.min.js"></script>
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/vendor/sanilize.min.css">
     <link rel="stylesheet" href="css/vendor/typ.min.css">
     <link rel="stylesheet" href="css/toth.css">
     <script src="js/toth.js"></script>
+
+    {{#each this}}
+      <link rel="stylesheet" href="{{cssurl}}">
+      <script href="{{jsurl}}"></script>
+    {{/each}}
   </head>
   <body>
     <div class="toth-loader is-open">
@@ -30,55 +33,52 @@
     <div class="toth-body">
       <aside class="toth-navbar">
         <nav class="toth-navbar-menu">
+          <ul class="toth-navigation">
+          {{#each this}}
+          <li class="toth-nagigation-item">
+            <a class="toth-navigation-link" href="#{{id}}" title="{{name}}">{{name}}</a>
+          </li>
+          {{/each}}
+          </ul>
         </nav>
         <a class="toth-navbar-brand" href="https://github.com/filipelinhares/toth"><small>built with toth</small></a>
       </aside>
       <section class="toth-guide-body">
-      </section>
-    </div>
-
-    <script type="text/x-handlebars-template" id="menu">
-      <ul class="toth-navigation">
-      {{#each this}}
-      <li class="toth-nagigation-item">
-        <a class="toth-navigation-link" href="#{{id}}" title="{{name}}">{{name}}</a>
-      </li>
-      {{/each}}
-      </ul>
-    </script>
-    <script type="text/x-handlebars-template" id="app">
-      <div>
         {{#each this}}
-          <h2 id="{{id}}">{{name}}</h2>
-          <p>{{description}}</p>
-          {{#if this.colors}}
-            <div class="toth-color-grid">
-              {{#each this.colors}}
-                <div class="toth-color-item">
-                  <div class="toth-color-palette" style="background-color: {{name}}">
-                  <span class="toth-color-text"><strong>{{name}}</strong> - {{variable}}</span>
+          <section class="toth-section">
+            <h2 id="{{id}}">{{name}}</h2>
+            <p>{{description}}</p>
+            {{#if this.colors}}
+              <div class="toth-color-grid">
+                {{#each this.colors}}
+                  <div class="toth-color-item">
+                    <div class="toth-color-palette" style="background-color: {{name}}">
+                      <span class="toth-color-text"><strong>{{name}}</strong> - {{variable}}</span>
+                    </div>
                   </div>
-                </div>
-              {{/each}}
-            </div>
-          {{else}}
+                {{/each}}
+              </div>
+            {{else}}
+            <h3>Modifiers</h3>
             <dl>
               {{#each state}}
-              <dt>{{name}}</dt>
-              <dd>{{description}}</dd>
+                <dt>{{name}}</dt>
+                <dd>{{description}}</dd>
               {{/each}}
             </dl>
             <h3>Example</h3>
             {{{markup.example}}}
             <h3>Markup</h3>
-            <pre>
-            <code class="html">
+            <pre class="toth-code">
+                <button class="js-btn-clipboard toth-btn-clipboard">Copy</button>
+                <code class="html">
 {{markup.example}}
-            </code>
-            </pre>
-          {{/if}}
+                </code>
+                </pre>
+            {{/if}}
+          </section>
         {{/each}}
-      </div>
-    </script>
+      </section>
+    </div>
   </body>
 </html>
