@@ -28,7 +28,7 @@
   "xo": {
     "space": true,
     "envs": ["browser", "jquery"],
-    "globals": ["Handlebars", "hljs", "loadJS", "loadCSS"]
+    "globals": ["Clipboard", "hljs"]
   },
   "devDependencies": {
     "xo": "^0.9.0"

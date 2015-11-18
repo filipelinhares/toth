@@ -22,7 +22,7 @@ switch (userCommand) {
       context: path.resolve(templateFolder, 'index.json'),
       dest: path.resolve(tothFolder, 'index.html')
     });
-    toth.generate(tothFolder, destFolder)
+    toth.generate(tothFolder, destFolder);
     break;
   case 'serve':
     toth.serve({port: cli.flags.port, folder: destFolder});

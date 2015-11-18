@@ -30,13 +30,13 @@ exports.new = (args, dir) => {
   doki.parse(path.resolve(dir, 'index.json'));
 };
 
-exports.compile = (options) => {
+exports.compile = options => {
   let markup = fs.readFileSync(options.originFile, 'utf-8');
   let context = fs.readFileSync(options.context, 'utf-8');
   let template = Handlebars.compile(markup);
   let content = template(JSON.parse(context));
   fs.writeFileSync(options.dest, content);
-}
+};
 
 exports.generate = (templateDir, destDir) => {
   ncp(templateDir, destDir, err => {
@@ -45,9 +45,9 @@ exports.generate = (templateDir, destDir) => {
     }
     message.info(`Generated at ${destDir}!`);
   });
-}
+};
 
-exports.serve = (options) => {
+exports.serve = options => {
   let port = options.port || 8080;
   util.dirExist(options.folder);
   let file = new server.Server(options.folder);

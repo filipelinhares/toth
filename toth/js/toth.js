@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var clipboard = new Clipboard('.js-btn-clipboard', {
     target: function (trigger) {
-      return trigger.nextElementSibling
+      return trigger.nextElementSibling;
     }
-  })
+  });
 
-  clipboard.on('success', function(e) {
+  clipboard.on('success', function (e) {
     e.clearSelection();
   });
 });
