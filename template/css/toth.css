@@ -85,6 +85,8 @@
 .toth-color-grid {
   display: flex;
   flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
 }
 
 .toth-color-item {
