@@ -16,5 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   clipboard.on('success', function (e) {
     e.clearSelection();
+    e.trigger.classList.add('is-ok');
+
+    setTimeout(function () {
+      e.trigger.classList.remove('is-ok');
+    }, 1000);
+  });
+
+  clipboard.on('error', function (e) {
+    e.clearSelection();
+    e.trigger.classList.add('is-not-ok');
+
+    setTimeout(function () {
+      e.trigger.classList.remove('is-not-ok');
+    }, 1000);
   });
 });

@@ -113,53 +113,6 @@
   text-align: center;
 }
 
-@media screen and (max-width: 980px) {
-  .toth-color-item {
-    flex-basis: 33.333333%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .toth-navbar,
-  .toth-guide-body {
-    float: none;
-    width: 100%;
-    margin: 0;
-  }
-
-  .toth-guide-body {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .toth-navbar {
-    position: static;
-  }
-
-  .toth-navigation {
-    height: auto;
-    padding-bottom: 0;
-  }
-
-  .toth-navigation-link {
-    padding: 20px 20px;
-  }
-
-  .toth-color-item {
-    flex-basis: 50%;
-  }
-
-  .toth-navbar-brand {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .toth-color-item {
-    flex-basis: 100%;
-  }
-}
-
 /* # ========== Loader */
 
 .toth-loader {
@@ -277,12 +230,16 @@
   }
 }
 
+/* # ========== Code */
+
 .hljs {
   padding: 0;
-  background: #f1f1f1;
+  background: #f1f1f1 !important;
   margin-top: -24px;
   padding-left: 24px;
 }
+
+/* # ========== Clipboard */
 
 .toth-code {
   position: relative;
@@ -294,10 +251,12 @@
 }
 
 .toth-btn-clipboard {
+  font-family: 'Open Sans', sans-serif;
+  font-size: .6rem;
   position: absolute;
   right: 0;
   border: 0;
-  padding: 2px 5px;
+  padding: 2px 5px 4px;
   cursor: pointer;
   top: 24px;
   right: 10px;
@@ -308,4 +267,68 @@
   visibility: hidden;
   transition: all .3s;
   font-weight: bold;
+  outline: 0;
+}
+
+.toth-btn-clipboard.is-ok:before {
+  color: green;
+  content: '✔ Copied';
+  position: absolute;
+  left: -60px;
+}
+
+.toth-btn-clipboard.is-not-ok:before {
+  color: red;
+  content: '✖ Error';
+  position: absolute;
+  left: -60px;
+}
+
+/* # ========== Devices */
+
+@media screen and (max-width: 980px) {
+  .toth-color-item {
+    flex-basis: 33.333333%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .toth-navbar,
+  .toth-guide-body {
+    float: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  .toth-guide-body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .toth-navbar {
+    position: static;
+  }
+
+  .toth-navigation {
+    height: auto;
+    padding-bottom: 0;
+  }
+
+  .toth-navigation-link {
+    padding: 20px 20px;
+  }
+
+  .toth-navbar-brand {
+    display: none;
+  }
+
+  .toth-color-item {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .toth-color-item {
+    flex-basis: 100%;
+  }
 }
