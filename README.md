@@ -35,12 +35,7 @@ Load an external resource into your styleguide when compiled.
 // @cssurl http://my-site/my-source-style.css
 // @jsurl http://my-site/my-source-interaction.js
 ```
-#### @id
-An unique identifiers for your components, it's used to create the menu's anchors.
 
-```scss
-// @id my-identifier
-```
 #### @name
 Your component's name.
 ```scss

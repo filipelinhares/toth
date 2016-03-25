@@ -30,17 +30,17 @@
           <ul class="toth-navigation">
           {{#each this}}
           <li class="toth-nagigation-item">
-            <a class="toth-navigation-link" href="#{{id}}" title="{{name}}">{{name}}</a>
+            <a class="toth-navigation-link" href="#{{likableName name}}" title="{{name}}">{{name}}</a>
           </li>
           {{/each}}
           </ul>
         </nav>
-        <a class="toth-navbar-brand" href="https://github.com/filipelinhares/toth"><small>built with toth</small></a>
+        <a class="toth-navbar-brand" href="https://github.com/filipelinhares/toth" target="_blank"><small>built with toth</small></a>
       </aside>
       <section class="toth-guide-body">
         {{#each this}}
           <section class="toth-section">
-            <h2 id="{{id}}">{{name}}</h2>
+            <h2 id="{{likableName name}}">{{name}}</h2>
             <p>{{description}}</p>
             {{#if this.colors}}
               <div class="toth-color-grid">

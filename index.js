@@ -9,6 +9,7 @@ const server = require('node-static');
 const Doki = require('doki');
 const ncp = require('ncp').ncp;
 const fs = require('fs');
+const kebabCase = require('lodash.kebabcase');
 
 exports.new = (args, dir) => {
   if (!args.length) {
@@ -17,7 +18,6 @@ exports.new = (args, dir) => {
   util.dirExist(args[0]);
 
   let doki = new Doki(args);
-  doki.parser('id', (i, line) => line);
   doki.parser('cssurl', (i, line) => line);
   doki.parser('jsurl', (i, line) => line);
   doki.parser('colors', (i, line) => {
@@ -31,6 +31,11 @@ exports.new = (args, dir) => {
 };
 
 exports.compile = options => {
+  Handlebars.registerHelper("likableName", (section) => {
+    let result = kebabCase(section);
+    return new Handlebars.SafeString(result);
+  });
+
   let markup = fs.readFileSync(options.originFile, 'utf-8');
   let context = fs.readFileSync(options.context, 'utf-8');
   let template = Handlebars.compile(markup);
