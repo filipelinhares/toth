@@ -11,12 +11,12 @@ const ncp = require('ncp').ncp;
 const fs = require('fs');
 const kebabCase = require('lodash.kebabcase');
 
-exports.new = (args, dir) => {
-  if (!args.length) {
-    return message.warn('You need to specify a file!');
-  }
-  util.dirExist(args[0]);
+Handlebars.registerHelper('likableName', section => {
+  let result = kebabCase(section);
+  return new Handlebars.SafeString(result);
+});
 
+function dokiGenerate(args) {
   let doki = new Doki(args);
   doki.parser('cssurl', (i, line) => line);
   doki.parser('jsurl', (i, line) => line);
@@ -27,27 +27,29 @@ exports.new = (args, dir) => {
       variable: (state[1]) ? state[1].trim() : ''
     };
   });
-  doki.parse(path.resolve(dir, 'index.json'));
-};
 
-exports.compile = options => {
-  Handlebars.registerHelper("likableName", (section) => {
-    let result = kebabCase(section);
-    return new Handlebars.SafeString(result);
-  });
+  return doki.out();
+}
 
-  let markup = fs.readFileSync(options.originFile, 'utf-8');
-  let context = fs.readFileSync(options.context, 'utf-8');
+exports.compile = (args, destDir, themeDir) => {
+  if (!args.length) {
+    return message.warn('You need to specify a file!');
+  }
+  util.dirExist(args[0]);
+  util.dirExist(themeDir);
+
+  // Compile template
+  let markup = fs.readFileSync(path.resolve(themeDir, 'index.hbs'), 'utf-8');
   let template = Handlebars.compile(markup);
-  let content = template(JSON.parse(context));
-  fs.writeFileSync(options.dest, content);
-};
+  let contentOutput = template(dokiGenerate(args));
 
-exports.generate = (templateDir, destDir) => {
-  ncp(templateDir, destDir, err => {
+  ncp(themeDir, destDir, err => {
     if (err) {
       return console.error(err);
     }
+
+    fs.writeFileSync(path.resolve(destDir, 'index.html'), contentOutput);
+    fs.unlink(path.resolve(destDir, 'index.hbs'));
     message.info(`Generated at ${destDir}!`);
   });
 };
