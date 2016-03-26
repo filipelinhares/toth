@@ -31,7 +31,7 @@ function dokiGenerate(args) {
   return doki.out();
 }
 
-exports.compile = (args, destDir, themeDir) => {
+exports.generate = (args, destDir, themeDir) => {
   if (!args.length) {
     return message.warn('You need to specify a file!');
   }
