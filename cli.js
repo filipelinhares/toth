@@ -45,12 +45,16 @@ const run = option => {
   }
 
   if (option === 'server' || option === 's') {
-    toth.serve(cli.flags.port, destFolder);
+    toth.server(cli.flags.port, destFolder);
   }
 
-  if (option === undefined || !(/\b(generate|server|s|g)\b/ig.test(option))) {
+  if (option === 'watch' || option === 'w') {
+    toth.watch(args, destFolder, cli.flags.port, theme);
+  }
+
+  if (option === undefined || !(/\b(generate|server|watch|w|s|g)\b/ig.test(option))) {
     cli.showHelp();
   }
-}
+};
 
 run(userCommand);
