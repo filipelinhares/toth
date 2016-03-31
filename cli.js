@@ -5,6 +5,7 @@ const meow = require('meow');
 const chalk = require('chalk');
 const path = require('path');
 const toth = require('./index');
+const util = require('./lib/util');
 
 const cli = meow(`
     ${chalk.italic('Examples')}:
@@ -30,20 +31,26 @@ const cli = meow(`
     }
   });
 
-let destFolder = cli.flags.dir || 'toth';
-let themeFolder = cli.flags.theme || path.resolve(__dirname, 'toth');
-let userCommand = cli.input.shift();
-let args = cli.input;
+const destFolder = cli.flags.dir || 'toth';
+const theme = cli.flags.theme || path.resolve(__dirname, 'toth');
+const userCommand = cli.input.shift();
+const args = cli.input;
 
-switch (userCommand) {
-  case 'generate':
-  case 'g':
-    toth.generate(args, destFolder, themeFolder);
-    break;
-  case 'server':
-  case 's':
-    toth.serve({port: cli.flags.port, folder: destFolder});
-    break;
-  default:
+util.dirExist(destFolder);
+util.dirExist(theme);
+
+const run = option => {
+  if (option === 'generate' || option === 'g') {
+    toth.generate(args, destFolder, theme);
+  }
+
+  if (option === 'server' || option === 's') {
+    toth.serve(cli.flags.port, destFolder);
+  }
+
+  if (option === undefined || !(/\b(generate|server|s|g)\b/ig.test(option))) {
     cli.showHelp();
+  }
 }
+
+run(userCommand);
