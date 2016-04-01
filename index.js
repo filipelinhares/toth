@@ -36,7 +36,6 @@ const dokiGenerate = args => {
 const generate = settings => {
   if (!settings.args.length) {
     message.warn('You need to specify a file!');
-    process.exit(1);
   }
   util.dirExist(settings.args[0]);
 
