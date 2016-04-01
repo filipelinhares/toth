@@ -31,30 +31,18 @@ const cli = meow(`
     }
   });
 
-const destFolder = cli.flags.dir || 'toth';
-const theme = cli.flags.theme || path.resolve(__dirname, 'toth');
-const userCommand = cli.input.shift();
-const args = cli.input;
-
-util.dirExist(destFolder);
-util.dirExist(theme);
-
-const run = option => {
-  if (option === 'generate' || option === 'g') {
-    toth.generate(args, destFolder, theme);
-  }
-
-  if (option === 'server' || option === 's') {
-    toth.server(cli.flags.port, destFolder);
-  }
-
-  if (option === 'watch' || option === 'w') {
-    toth.watch(args, destFolder, cli.flags.port, theme);
-  }
-
-  if (option === undefined || !(/\b(generate|server|watch|w|s|g)\b/ig.test(option))) {
-    cli.showHelp();
-  }
+const settings = {
+  cli: cli,
+  destFolder: cli.flags.dir || 'toth',
+  theme: cli.flags.theme || path.resolve(__dirname, 'toth'),
+  port: cli.flags.port || 8080,
+  args: cli.input,
+  userCommand: cli.input.shift()
 };
 
-run(userCommand);
+util.dirExist(settings.destFolder);
+util.dirExist(settings.theme);
+
+let alias = util.abbreviation(settings, toth);
+
+toth[alias](settings);

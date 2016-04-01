@@ -16,6 +16,7 @@
     "generator"
   ],
   "dependencies": {
+    "abbrev": "^1.0.7",
     "chalk": "^1.1.1",
     "doki": "^1.1.2",
     "glob-watcher": "^2.0.0",
