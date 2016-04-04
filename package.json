@@ -1,6 +1,6 @@
 {
   "name": "toth",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Styleguide generator that just works.",
   "license": "MIT",
   "repository": "filipelinhares/toth",
@@ -18,6 +18,7 @@
   "dependencies": {
     "abbrev": "^1.0.7",
     "chalk": "^1.1.1",
+    "consolidate": "^0.14.0",
     "doki": "^1.1.2",
     "figures": "^1.5.0",
     "glob-watcher": "^2.0.0",
