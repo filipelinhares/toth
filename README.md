@@ -4,70 +4,111 @@ Styleguide generator that just work.
 - [Demo](http://filipelinhares.github.io/toth-example/toth/)
 - [Demo source](https://github.com/filipelinhares/toth-example)
 
+### Content
+ - [Installation](#installation)
+ - [CLI usage](#cli-usage)
+ - [Styleguide markup](#styleguide-markup)
+ - [Custom themes](#custom-themes)
+
 ## Installation
 ```sh
 npm install --global toth
 ```
 
 ## CLI usage
-#### new
+
+### Options
+#### g, generate
 ```sh
-toth new scss/*.scss
+toth generate css/*.css
 ```
-#### serve
+#### s, server
 ```sh
-toth serve
+toth server
 ```
-#### --port
+#### w, watch
 ```sh
-toth serve --port 8080
+toth watch css/*.css
 ```
-#### --dir
+
+### Flags
+#### -p, --port
 ```sh
-toth new   --dir outputDir
-toth serve --dir outputDir
+toth server --port 8080
+```
+#### -d, --dir
+```sh
+toth generate --dir outputDir
+toth server --dir outputDir
+```
+#### -t, --theme
+```sh
+toth generate scss/*.scss --theme {theme-folder or theme-package}
 ```
 ## Styleguide documentation syntax
 
 #### @cssurl and @jsurl
 Load an external resource into your styleguide when compiled.
-```scss
-// @cssurl http://my-site/my-source-style.css
-// @jsurl http://my-site/my-source-interaction.js
+```css
+/*
+ * @cssurl http://my-site/my-source-style.css
+ * @jsurl http://my-site/my-source-interaction.js
+ */
 ```
 
 #### @name
 Your component's name.
-```scss
+```css
 // @name Button
 ```
 #### @description
 Your component's description.
-```scss
-// @description My description lorem ipsum dolor sit a met
+```css
+/*
+ * @description My description lorem ipsum dolor sit a met
+ */
 ```
 #### @state
 Your component modifier, you need to follow these pattern `nome-do-modifier - descrição do modifier` with a dash between the name and the description.
-```scss
-// @state .small - A small button
+```css
+/*
+ * @state .small - A small button
+ */
 ```
 #### @markup
 The markup is used to build the code example and the element into your styleguide.
-```scss
-// @markup
-	<button class="btn">I'm button</button>
+```css
+/* @markup
+ *	<button class="btn">I'm button</button>
+ */
 ```
+
+#### @color
+The markup is used to build the code example and the element into your styleguide.
+```css
+/*
+ * @colors #fff - --variable-name
+ */
+```
+## Custom themes
+TODO: Add content
 
 ## Contribute
 Your contributions and suggestions are :heart: welcome.
 
 #### Roadmap to 1.0
-- [ ] Create the `toth watch` command
-- [ ] Create a way to make custom themes
-- [ ] Improves documentation
+- [x] Create the `toth watch` command
+- [x] Create a way to make custom themes
 - [x] Improves default theme's code
 - [x] Compile template in the back like Jekyll do
 - [x] Add color palette support
+- [ ] Design a bealtiful [toth-default-theme](http://github.com/filipelinhares/toth-default-theme)
+- [ ] Improves documentation
+
+#### Improvements
+- [ ] Alternative to [ncp](https://www.npmjs.com/package/ncp)
+- [ ] Alternative to [node-static](https://www.npmjs.com/package/node-static)
+- [ ] Code
 
 ## License
 [MIT](LICENSE.md) © Filipe LInhares
