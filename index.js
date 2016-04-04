@@ -3,20 +3,14 @@
 const message = require('./lib/message');
 const path = require('path');
 const util = require('./lib/util');
-const Handlebars = require('handlebars');
 const http = require('http');
 const nodeStatic = require('node-static');
 const Doki = require('doki');
 const ncp = require('ncp').ncp;
 const fs = require('fs');
-const kebabCase = require('lodash.kebabcase');
 const globWatch = require('glob-watcher');
 const chalk = require('chalk');
-
-Handlebars.registerHelper('likableName', section => {
-  let result = kebabCase(section);
-  return new Handlebars.SafeString(result);
-});
+const cons = require('consolidate');
 
 const dokiGenerate = args => {
   let doki = new Doki(args);
@@ -29,32 +23,41 @@ const dokiGenerate = args => {
       variable: (state[1]) ? state[1].trim() : ''
     };
   });
-
   return doki.out();
+};
+
+const copyTheme = (settings, themePath, html) => {
+  ncp(path.resolve(themePath, 'toth'), settings.destFolder, err => {
+    if (err) {
+      return console.error(err);
+    }
+    fs.writeFileSync(path.resolve(settings.destFolder, 'index.html'), html);
+    message.info(`Generated at ${settings.destFolder}`);
+  });
+};
+
+const compileTemplate = (settings, themePath) => {
+  const contentOutput = dokiGenerate(settings.args);
+  const hbsHelpers = require(path.resolve(themePath, 'helpers.js'));
+
+  cons.handlebars(path.resolve(themePath, 'index.hbs'),
+      {toth: contentOutput, helpers: hbsHelpers})
+    .then(function (html) {
+      copyTheme(settings, themePath, html);
+    })
+    .catch(function (err) {
+      throw err;
+    });
 };
 
 const generate = settings => {
   if (!settings.args.length) {
     message.warn('You need to specify a file!');
   }
+
   util.dirExist(settings.args[0]);
-
-  const themeRequired = require.resolve(settings.theme);
-  const themeRequiredDir = path.dirname(themeRequired);
-
-  // Compile template
-  let markup = fs.readFileSync(themeRequired, 'utf-8');
-  let template = Handlebars.compile(markup);
-  let contentOutput = template(dokiGenerate(settings.args));
-
-  ncp(themeRequiredDir, settings.destFolder, err => {
-    if (err) {
-      return console.error(err);
-    }
-    fs.writeFileSync(path.resolve(settings.destFolder, 'index.html'), contentOutput);
-    fs.unlink(path.resolve(settings.destFolder, 'index.hbs'));
-    message.info(`Generated at ${settings.destFolder}`);
-  });
+  const themePath = path.dirname(require.resolve(settings.theme));
+  compileTemplate(settings, themePath);
 };
 
 const server = settings => {

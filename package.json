@@ -1,6 +1,6 @@
 {
   "name": "toth",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Styleguide generator that just works.",
   "license": "MIT",
   "repository": "filipelinhares/toth",
@@ -24,7 +24,8 @@
     "lodash.kebabcase": "^4.0.0",
     "meow": "^3.4.2",
     "ncp": "^2.0.0",
-    "node-static": "^0.7.7"
+    "node-static": "^0.7.7",
+    "toth-default-theme": "^0.1.0"
   },
   "scripts": {
     "test": "xo"

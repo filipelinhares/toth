@@ -3,7 +3,6 @@
 
 const meow = require('meow');
 const chalk = require('chalk');
-const path = require('path');
 const toth = require('./index');
 const util = require('./lib/util');
 
