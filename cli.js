@@ -34,14 +34,11 @@ const cli = meow(`
 const settings = {
   cli: cli,
   destFolder: cli.flags.dir || 'toth',
-  theme: cli.flags.theme || path.resolve(__dirname, 'toth'),
+  theme: cli.flags.theme || 'toth-default-theme',
   port: cli.flags.port || 8080,
   args: cli.input,
   userCommand: cli.input.shift()
 };
-
-util.dirExist(settings.destFolder);
-util.dirExist(settings.theme);
 
 let alias = util.abbreviation(settings, toth);
 
