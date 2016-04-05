@@ -105,10 +105,5 @@ Your contributions and suggestions are :heart: welcome.
 - [ ] Design a bealtiful [toth-default-theme](http://github.com/filipelinhares/toth-default-theme)
 - [ ] Improves documentation
 
-#### Improvements
-- [ ] Alternative to [ncp](https://www.npmjs.com/package/ncp)
-- [ ] Alternative to [node-static](https://www.npmjs.com/package/node-static)
-- [ ] Code
-
 ## License
 [MIT](LICENSE.md) © Filipe LInhares

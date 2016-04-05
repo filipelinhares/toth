@@ -4,7 +4,7 @@ const message = require('./lib/message');
 const path = require('path');
 const util = require('./lib/util');
 const http = require('http');
-const nodeStatic = require('node-static');
+const ecstatic = require('ecstatic');
 const Doki = require('doki');
 const ncp = require('ncp').ncp;
 const fs = require('fs');
@@ -42,10 +42,10 @@ const compileTemplate = (settings, themePath) => {
 
   cons.handlebars(path.resolve(themePath, 'index.hbs'),
       {toth: contentOutput, helpers: hbsHelpers})
-    .then(function (html) {
+    .then(html => {
       copyTheme(settings, themePath, html);
     })
-    .catch(function (err) {
+    .catch(err => {
       throw err;
     });
 };
@@ -61,12 +61,8 @@ const generate = settings => {
 };
 
 const server = settings => {
-  let file = new nodeStatic.Server(settings.destFolder);
-  http.createServer((request, response) => {
-    request.addListener('end', () => {
-      file.serve(request, response);
-    }).resume();
-  }).listen(settings.port);
+  const server = http.createServer(ecstatic({root: settings.destFolder}));
+  server.listen(settings.port);
   message.info(`Server now running at http://localhost:${settings.port}`);
 };
 
@@ -74,6 +70,7 @@ const watch = settings => {
   util.dirExist(settings.args[0]);
   server(settings);
   generate(settings);
+
   const watcher = globWatch(settings.args);
   watcher.on('change', evt => {
     message.info(chalk.italic(`[${evt.type}: ${path.relative(process.cwd(), evt.path)}] 🕐 ${util.timeStamp()}`));
